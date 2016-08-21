@@ -18,6 +18,16 @@ Installation is simple also.
   2.5. Create user "fim" on target systems. You can create another user, but if so, you'll have to edit scripts
   2.6. Configure on yor server sendmail (make it work as client, not server. The process is properly described in the following   documentation: https://docs.oracle.com/cd/E52668_01/E54669/html/ol7-s7-emailsvc.html)
   2.7. Make sure you have installed on your server "expect" package
+  2.8. To configure your mail addresses, you have to edit following scripts:
+  /opt/fim/scripts/AIX/AIX.sh
+  /opt/fim/scripts/ASA/ASA.sh
+  /opt/fim/scripts/Linux/Linux.sh
+  /opt/fim/scripts/Switch/Switch.sh
+  In these scripts just find following lines
+  From: fim@mail.com
+  and
+  To: admin@mail.com
+  Just change them to your mail addresses.
   2.8. To start monitoring you can user fimctrl.sh in /opt/fim/bin. For example:
   ./fimctrl.sh start5min
   ./fimctrl.sh start 2min
@@ -29,7 +39,12 @@ Installation is simple also.
   or
   check_conf_switcher.sh  <sensor name on>.
   ./check_conf_switches.sh status - will show you status of all your sensors.
-4. There is one another script check_conf_age.sh. I wrote it for monitoring, if information in my sensors is out of date. For example, if server is down, and sensor is running every 2min, after 270 seconds if you'll run check_conf_age.sh, it'll inform you that you sensor is down. You can call this script manually or automatically and also remotely, from monitoring system (for example PRTG - the output of this script I designed special for PRTG. You can edit it as you want, for example send mail, syslog and etc.).
+4. There is one another script check_conf_age.sh. I wrote it for monitoring, if information in my sensors is out of date. For example, if server is down, and sensor is running every 2min, after 270 seconds if you'll run check_conf_age.sh, it'll inform you that you sensor is down. You can call this script manually or automatically and also remotely, from monitoring system (for example PRTG - the output of this script I designed special for PRTG. You can edit it as you want, for example send mail, syslog and etc.). You can also make mail notification about connection problem changing "core" scripts. Just uncomment block #Report About Connection Problem via Mail in following scripts:
+  /opt/fim/scripts/AIX/AIX.sh
+  /opt/fim/scripts/ASA/ASA.sh
+  /opt/fim/scripts/Linux/Linux.sh
+  /opt/fim/scripts/Switch/Switch.sh  
+5. Another useful thing - it's "alive" script. It's sending mail every 5 minutes, that your server properly sending mail to you. For example it's important if your mail server is down, and you don't know that. "core" script is /opt/fim/scripts/Alive/Alive.sh. In this script you can change mails and text of message.
   
   
   
