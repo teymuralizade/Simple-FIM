@@ -15,5 +15,16 @@ Installation is simple also.
     Format for ASA's and switches:
     /opt/fim/scripts/Switch/Switch.sh <your sensor name> <ip address of your target system> <first password> <second password> &
   2.4. ONLY FOR *NIX SYSTEMS: create in /opt/fim/scripts/Linux/hosts_and_commands (for AIX - /opt/fim/scripts/AIX/hosts_and_commands) file with your sensor_name. This file must contain the command for performing scan on target system. Default command is already exist in example-file "temp_server1" in the archive
-  2.5.
+  2.5. Create user "fim" on target systems. You can create another user, but if so, you'll have to edit scripts
+  2.6. Configure on yor server sendmail (make it work as client, not server. The process is properly described in the following   documentation: https://docs.oracle.com/cd/E52668_01/E54669/html/ol7-s7-emailsvc.html)
+  2.7. Make sure you have installed on your server "expect" package
+  2.8. To start monitoring you can user fimctrl.sh in /opt/fim/bin. For example:
+  ./fimctrl.sh start5min
+  ./fimctrl.sh start 2min
+  or (instead of written before)
+  ./fimctrl.sh startall
+  Just type ./fimsctrl.sh and you will see all available commands
+  
+  
+  
   
