@@ -23,7 +23,14 @@ Installation is simple also.
   ./fimctrl.sh start 2min
   or (instead of written before)
   ./fimctrl.sh startall
-  Just type ./fimsctrl.sh and you will see all available commands
+  Just type ./fimsctrl.sh and you will see all available commands. ./fimctrl.sh status will show you the status of running jobs.
+3. You can also temporarly to turn off or turn on your sensors. For that use script check_conf_switcher.sh. The format is:
+  ./check_conf_switcher.sh <sensor name> off
+  or
+  check_conf_switcher.sh  <sensor name on>.
+  ./check_conf_switches.sh status - will show you status of all your sensors.
+4. 
+  
   
   
   
