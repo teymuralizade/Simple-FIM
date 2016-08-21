@@ -1,1 +1,16 @@
 
+Installation is simple also. 
+
+1. Unzip archive on your server (which will monitor other systems; remind you - monitoring is agentless). For quick - let it be on /opt. So the path will be /opt/fim/
+2. Create sensor. For that you must:
+  2.1. Create directory in /opt/fim/sensors with the name of your sensor. For example /opt/fim/sensors/my_first_server. Inside of this directory create directory "hist" (without quotes)
+  2.2. Deside - how often monitoring system will initialize connections to target systems for scan. My practice - frontends must be scan every 2 min, other systems 5 min. People often blame me in paranoia, but believe me I'm not. After desiding - write your sensor name in one of config - /opt/check_conf_age/2min.conf or /opt/check_conf_age/5min.conf
+  2.3. In /opt/fim/bin 2 scripts - fim_2min.sh and fim_5min.sh. Edit one of them. We are intrested in lines looks like:
+  /opt/fim/scripts/Linux/Linux.sh... <some parameters>
+  The format of this line for *nix systems is:
+  /opt/fim/scripts/Linux/Linux.sh <your sensor name> <ip address of your target system> <password of the user on target system> &
+  For example:
+  /opt/fim/scripts/Linux/Linux.sh temp_server1 1.1.1.1 password &
+  "&" sign must be at the end of each line like this. The last line must contain "& wait;" 
+  Format for ASA's and switches:
+  /opt/fim/scripts/Switch/Switch.sh <your sensor name> <ip address of your target system> <first password> <second password> &
