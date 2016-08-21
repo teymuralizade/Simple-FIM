@@ -4,7 +4,7 @@ Installation is simple also.
 1. Unzip archive on your server (which will monitor other systems; remind you - monitoring is agentless). For quick - let it be on /opt. So the path will be /opt/fim/
 2. Create sensor. For that you must:
   2.1. Create directory in /opt/fim/sensors with the name of your sensor. For example /opt/fim/sensors/my_first_server. Inside of this directory create directory "hist" (without quotes)
-  2.2. Deside - how often monitoring system will initialize connections to target systems for scan. My practice - frontends must be scan every 2 min, other systems 5 min. People often blame me in paranoia, but believe me I'm not. After desiding - write your sensor name in one of config - /opt/check_conf_age/2min.conf or /opt/check_conf_age/5min.conf
+  2.2. Deside - how often monitoring system will initialize connections to target systems for scan. My practice - frontends must be scan every 2 min, other systems 5 min. People often blame me in paranoia, but believe me I'm not. After desiding - write your sensor name in one of config - /opt/check_conf_age/2min.conf or /opt/check_conf_age/5min.conf. IMPORTANT: at the end of the file always must be empty line!!! IT'S IMPORTANT !!! DON'T FORGET!!!
   2.3. In /opt/fim/bin 2 scripts - fim_2min.sh and fim_5min.sh. Edit one of them. We are interested in lines looks like:
     /opt/fim/scripts/Linux/Linux.sh... <some parameters>
     The format of this line for *nix systems is:
@@ -29,7 +29,7 @@ Installation is simple also.
   or
   check_conf_switcher.sh  <sensor name on>.
   ./check_conf_switches.sh status - will show you status of all your sensors.
-4. 
+4. There is one another script check_conf_age.sh. I wrote it for monitoring, if information in my sensors is out of date. For example, if server is down, and sensor is running every 2min, after 270 seconds if you'll run check_conf_age.sh, it'll inform you that you sensor is down. You can call this script manually or automatically and also remotely, from monitoring system (for example PRTG - the output of this script I designed special for PRTG. You can edit it as you want, for example send mail, syslog and etc.).
   
   
   
