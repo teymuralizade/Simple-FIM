@@ -37,7 +37,7 @@ Installation is simple also.
 3. You can also temporarly to turn off or turn on your sensors. For that use script check_conf_switcher.sh. The format is:
   ./check_conf_switcher.sh <sensor name> off
   or
-  check_conf_switcher.sh  <sensor name on>.
+  check_conf_switcher.sh  <sensor name> on
   ./check_conf_switches.sh status - will show you status of all your sensors.
 4. There is one another script check_conf_age.sh. I wrote it for monitoring, if information in my sensors is out of date. For example, if server is down, and sensor is running every 2min, after 270 seconds if you'll run check_conf_age.sh, it'll inform you that you sensor is down. You can call this script manually or automatically and also remotely, from monitoring system (for example PRTG - the output of this script I designed special for PRTG. You can edit it as you want, for example send mail, syslog and etc.). You can also make mail notification about connection problem changing "core" scripts. Just uncomment block #Report About Connection Problem via Mail in following scripts:
   /opt/fim/scripts/AIX/AIX.sh
