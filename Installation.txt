@@ -1,6 +1,7 @@
 
 Installation is simple also. 
 
+Important (added 10/09/2016): To know how tune Windows monitoring, please see paragraph 6.
 1. Unzip archive on your server (which will monitor other systems; remind you - monitoring is agentless). For quick - let it be on /opt. So the path will be /opt/fim/
 2. Create sensor. For that you must:
   2.1. Create directory in /opt/fim/sensors with the name of your sensor. For example /opt/fim/sensors/my_first_server. Inside of this directory create directory "hist" (without quotes)
@@ -45,8 +46,20 @@ Installation is simple also.
   /opt/fim/scripts/Linux/Linux.sh
   /opt/fim/scripts/Switch/Switch.sh  
 5. Another useful thing - it's "alive" script. It's sending mail every 5 minutes, that your server properly sending mail to you. For example it's important if your mail server is down, and you don't know that. "core" script is /opt/fim/scripts/Alive/Alive.sh. In this script you can change mails and text of message.
-  
-  
-  
+6. Windows monitoring is working via agent, that uses GnuWin32 (http://gnuwin32.sourceforge.net/) and CygWin (https://www.cygwin.com/) utilities. More about these projects you can find on the sites above. The model of monitoring: agent works on remote server, and changes in OS and Registry are placing locally on remote server. FIM Server via sharing takes them from remote server and makes all necessary works. What you must to do to tune monitoring:
+  6.1. First create sensor on FIM server (like Linux creation)
+  6.2. In fim_2min.sh or fim_5min.sh (you want to use 2 or 5 minutes monitoring), just like Linux tuning, place line:
+       /opt/fim/scripts/Windows/Windows.sh <your sensor name> <ip address of your target system> &
+  6.3. On remote Windows server:
+    6.3.1. Install Fim Client. Just press "Next" and Installation begins. Fim will be installed to C:\fim. The folder "fim" will be created by installation.
+    6.3.2. Make sharing of the folder c:\fim\result. The name of sharing must be the same, as you called sensor on FIM Server.
+    6.3.3. All setting are written in fim.bat file, if you want to use defaults, just run it (the best - place it in Scheduled Tasks with interval 1 minute). You can edit fim.bat as you want, monitoring uses "tree" and "grep" tools.
+  6.4. On FIM Server:
+    6.4.1. Create folder with the name of your Windows sensor in: /opt/fim/windows_shared/<sensor name>
+    6.4.2. Under root user map shared folder on remote Windows server:
+    mount -t cifs -o username=windows_user_that_have_rights_on_folder,password='password',uid=fim_user,gid=fim_group //<ip address of remote server>/<sensor name> /opt/fim/windows_shared/<sensor name>/
+    For example:
+  mount -t cifs -o username=guest,password='testpass',uid=fim,gid=fim //172.25.1.1/temp_server3 /opt/fim/windows_shared/temp_server3/
+  6.5. Run you monitoring like Linux monitoring via /opt/fim/bin/fimctrl script
   
   
