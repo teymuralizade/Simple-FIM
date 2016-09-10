@@ -60,6 +60,6 @@ Important (added 10/09/2016): To know how tune Windows monitoring, please see pa
     mount -t cifs -o username=windows_user_that_have_rights_on_folder,password='password',uid=fim_user,gid=fim_group //<ip address of remote server>/<sensor name> /opt/fim/windows_shared/<sensor name>/
     For example:
   mount -t cifs -o username=guest,password='testpass',uid=fim,gid=fim //172.25.1.1/temp_server3 /opt/fim/windows_shared/temp_server3/
-  6.5. Run you monitoring like Linux monitoring via /opt/fim/bin/fimctrl script
+  6.5. Run your monitoring like Linux monitoring via /opt/fim/bin/fimctrl script
   
   
